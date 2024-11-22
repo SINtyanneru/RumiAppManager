@@ -26,6 +26,11 @@ public class Main {
 					return;
 				}
 
+				case "install": {
+					INSTALL.Main(args[1]);
+					return;
+				}
+
 				default: {
 					System.out.println("?");
 				}
