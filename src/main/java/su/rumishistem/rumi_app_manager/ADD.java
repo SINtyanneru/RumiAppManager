@@ -1,4 +1,4 @@
-package com.rumisystem.rumi_app_manager;
+package su.rumishistem.rumi_app_manager;
 
 import static com.rumisystem.rumi_java_lib.LOG_PRINT.Main.LOG;
 

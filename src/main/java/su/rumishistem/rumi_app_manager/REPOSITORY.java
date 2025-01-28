@@ -1,4 +1,4 @@
-package com.rumisystem.rumi_app_manager;
+package su.rumishistem.rumi_app_manager;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
