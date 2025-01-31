@@ -29,8 +29,6 @@ public class INSTALL {
 			}
 		}
 		LOG(LOG_TYPE.OK, "完了");
-		LOG(LOG_TYPE.OK, "");
-		LOG(LOG_TYPE.OK, "");
 
 		//見つかったか
 		if (HIT_PKG_LIST.size() != 0) {
@@ -45,7 +43,7 @@ public class INSTALL {
 				if (new Scanner(System.in).nextLine().equals("y")) {
 					INST(HIT_PKG_LIST.get(0));
 				} else {
-					System.out.println("キャンセルしました");
+					LOG(LOG_TYPE.OK, "キャンセルしました");
 				}
 			} else {
 				//複数ある場合
@@ -60,7 +58,7 @@ public class INSTALL {
 			}
 		} else {
 			//みつからんかった
-			LOG(LOG_TYPE.INFO, "パッケージは見つかりませんでした");
+			LOG(LOG_TYPE.FAILED, "パッケージは見つかりませんでした");
 		}
 	}
 
