@@ -50,6 +50,10 @@ public class RepoManager {
 		return false;
 	}
 
+	public static List<RepositoryInfo> GetList() {
+		return RepoList;
+	}
+
 	public static void AddRepo(String URL) throws URISyntaxException, JsonProcessingException, IOException {
 		RepoList.add(new RepositoryInfo(new URI(URL)));
 		SaveRepoFile();

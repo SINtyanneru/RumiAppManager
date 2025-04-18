@@ -4,6 +4,10 @@ import static su.rumishistem.rumi_java_lib.LOG_PRINT.Main.LOG;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import su.rumishistem.rumi_app_manager.MODULE.RepoManager;
 import su.rumishistem.rumi_app_manager.TYPE.RUNMODE;
 import su.rumishistem.rumi_java_lib.LOG_PRINT.LOG_TYPE;
@@ -14,7 +18,7 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			RUNMODE RUN = null;
-			String TARGET = null;
+			List<String> TARGET = new ArrayList<String>();
 
 			//初期化
 			DirInit();
@@ -26,23 +30,27 @@ public class Main {
 				switch (arg) {
 					case "add":{
 						RUN = RUNMODE.ADD;
-						TARGET = args[I + 1];
-						I++;
 						break;
 					}
 
 					default: {
-						LOG(LOG_TYPE.FAILED, arg + "←は？");
-						System.exit(1);
+						if (I != 0) {
+							TARGET.add(arg);
+						} else {
+							LOG(LOG_TYPE.FAILED, arg + "←は？");
+							System.exit(1);
+						}
 					}
 				}
 			}
 
 			//実行する
 			if (RUN != null) {
-				switch (RUN) {
-					case ADD: {
-						ADD.Main(TARGET);
+				for (String T:TARGET) {
+					switch (RUN) {
+						case ADD: {
+							ADD.Main(T);
+						}
 					}
 				}
 			} else {
