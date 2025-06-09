@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
+import su.rumishistem.rumi_app_manager.MODULE.AppManager;
 import su.rumishistem.rumi_app_manager.MODULE.RepoManager;
 import su.rumishistem.rumi_app_manager.TYPE.RUNMODE;
 import su.rumishistem.rumi_java_lib.LOG_PRINT.LOG_TYPE;
@@ -20,9 +20,12 @@ public class Main {
 			RUNMODE RUN = null;
 			List<String> TARGET = new ArrayList<String>();
 
+			System.out.println(OSName);
+
 			//初期化
 			DirInit();
 			RepoManager.Init();
+			AppManager.Init();
 
 			//引数解析
 			for (int I = 0; I < args.length; I++) {
@@ -30,6 +33,11 @@ public class Main {
 				switch (arg) {
 					case "add":{
 						RUN = RUNMODE.ADD;
+						break;
+					}
+
+					case "update":{
+						RUN = RUNMODE.UPDATE;
 						break;
 					}
 
@@ -46,10 +54,18 @@ public class Main {
 
 			//実行する
 			if (RUN != null) {
+				switch (RUN) {
+					case UPDATE: {
+						UPDATE.Main();
+						return;
+					}
+				}
+
 				for (String T:TARGET) {
 					switch (RUN) {
 						case ADD: {
 							ADD.Main(T);
+							return;
 						}
 					}
 				}
