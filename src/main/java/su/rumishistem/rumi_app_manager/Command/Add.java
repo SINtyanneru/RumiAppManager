@@ -5,6 +5,7 @@ import static su.rumishistem.rumi_java_lib.LOG_PRINT.Main.LOG;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.sql.SQLException;
 
 import kotlin.text.Charsets;
 import su.rumishistem.rumi_app_manager.Module.INIParser;
@@ -49,7 +50,7 @@ public class Add {
 					LOG(LOG_TYPE.PROCESS, v + "を追加しています...");
 					RepositoryList.add(url.toString());
 					LOG(LOG_TYPE.PROCESS_END_OK, "");
-				} catch (IOException EX) {
+				} catch (SQLException EX) {
 					EX.printStackTrace();
 				}
 			}

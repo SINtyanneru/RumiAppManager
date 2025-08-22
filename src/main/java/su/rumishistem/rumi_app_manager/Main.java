@@ -7,7 +7,11 @@ import java.nio.file.Path;
 
 import su.rumishistem.rumi_app_manager.Command.Add;
 import su.rumishistem.rumi_app_manager.Command.Help;
+import su.rumishistem.rumi_app_manager.Command.Init;
+import su.rumishistem.rumi_app_manager.Command.ShowRepositoryList;
+import su.rumishistem.rumi_app_manager.Command.Update;
 import su.rumishistem.rumi_app_manager.Module.RepositoryList;
+import su.rumishistem.rumi_app_manager.Module.SQL;
 import su.rumishistem.rumi_app_manager.Type.RunMode;
 import su.rumishistem.rumi_java_lib.EXCEPTION_READER;
 import su.rumishistem.rumi_java_lib.LOG_PRINT.LOG_TYPE;
@@ -22,6 +26,7 @@ public class Main {
 				Files.createDirectory(Path.of("/etc/ram"));
 			}
 
+			SQL.init();
 			RepositoryList.init();
 
 			check_root();
@@ -36,8 +41,23 @@ public class Main {
 						break;
 					}
 
+					case "init": {
+						run = RunMode.Init;
+						break;
+					}
+
 					case "add": {
 						run = RunMode.Add;
+						break;
+					}
+
+					case "repository-list": {
+						run = RunMode.RepositoryList;
+						break;
+					}
+
+					case "update": {
+						run = RunMode.Update;
 						break;
 					}
 				}
@@ -49,8 +69,23 @@ public class Main {
 					return;
 				}
 
+				case Init: {
+					Init.main(args);
+					return;
+				}
+
 				case Add: {
 					Add.main(args);
+					return;
+				}
+
+				case RepositoryList: {
+					ShowRepositoryList.main(args);
+					return;
+				}
+
+				case Update: {
+					Update.main(args);
 					return;
 				}
 
